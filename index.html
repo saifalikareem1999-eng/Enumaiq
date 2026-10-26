@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>إينوما | مبادرة فكرية وطنية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0809; --clay:#1c1012; --crimson:#9c1424; --ember:#d6303f; --bone:#f1e7dc; --mute:#b9a7a3; --line:rgba(241,231,220,.16);
+  --bg:var(--ink); --card:var(--clay); --fg:var(--bone); --sub:var(--mute);
+  box-sizing:border-box; color-scheme:dark;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.8 "IBM Plex Sans Arabic",system-ui,sans-serif}
+h1,h2,h3{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;margin:0;line-height:1.3}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+/* top bar */
+header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+header .name{font:700 18px "Reem Kufi",sans-serif;letter-spacing:.02em}
+.tbtn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:18px;cursor:pointer}
+
+#menu{position:absolute;inset-inline-start:0;top:64px;z-index:5;min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+#menu[hidden]{display:none}
+#menu a{display:block;padding:10px 14px;border-radius:10px;text-decoration:none}
+#menu a:hover,#menu a:focus-visible{background:var(--crimson);color:#fff}
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding:28px 0 56px;background:radial-gradient(ellipse at 50% 0%,rgba(156,20,36,.55),transparent 65%)}
+.logo{width:min(62vw,240px);aspect-ratio:1;display:grid;place-items:center;margin:0 auto 28px;border-radius:50%;background:#000;border:2px solid var(--crimson);box-shadow:0 0 0 8px rgba(156,20,36,.18)}
+.logo svg{width:80%;height:auto;overflow:visible}
+.logo path{fill:var(--bone);fill-rule:evenodd;opacity:0;transform-box:fill-box;transform-origin:center;animation:stamp .6s cubic-bezier(.2,.9,.3,1.2) forwards;animation-delay:calc(var(--i)*140ms + 250ms)}
+@keyframes stamp{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:scale(1)}}
+.hero h1{font-size:clamp(40px,12vw,60px)}
+.hero p{color:var(--sub);max-width:34ch;margin:12px auto 0}
+.cta{display:block;margin:28px auto 0;max-width:340px;padding:14px 20px;border-radius:14px;background:var(--crimson);color:#fff;text-decoration:none;font:500 17px "IBM Plex Sans Arabic",sans-serif;text-align:center;border:1px solid var(--ember)}
+.cta:active{transform:translateY(1px)}
+
+.scene{margin:28px auto 0;max-width:520px;animation:rise 1s ease both}
+.hero .cta{margin-top:18px}
+.cap{margin-top:12px;font:500 15px "Reem Kufi",sans-serif;color:var(--sub);letter-spacing:.02em;text-align:center}
+.scene svg{display:block;width:100%;height:auto}
+.scene .sky{fill:url(#sk)}
+.scene .l{fill:#c42336}
+.scene .d{fill:#0d0809}
+.scene .e{fill:#e8505e}
+.scene .gr{fill:#3a0a10}
+.scene .sun{fill:#f1e7dc;opacity:.9}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pillars.eq .pillar:nth-child(n){background:var(--card);border:1px solid var(--line);border-top:3px solid var(--crimson);color:var(--fg)}
+.pillars.eq span{opacity:.8}
+.motto{margin:28px 0 0;padding:20px 18px;border-inline-start:4px solid var(--ember);background:var(--card);border-radius:6px 16px 16px 6px;font:700 22px/1.7 "Reem Kufi",sans-serif}
+.fold{padding:0}
+.fold summary span{flex:1}
+.fold summary small{font-size:13px;background:var(--crimson);color:#fff;border-radius:10px;padding:0 9px;line-height:1.7}
+.fold>.pillars,.fold>.goals{padding:0 12px 14px}
+.fold>.goals{margin:0}
+.strip-t{font:700 18px "Reem Kufi",sans-serif;color:var(--ember);margin:22px 0 10px}
+.strip{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.chip{flex:0 0 auto;scroll-snap-align:center;min-width:118px;padding:13px 20px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:500 17px "Reem Kufi","IBM Plex Sans Arabic",sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.chip[aria-pressed="true"]{background:var(--crimson);border-color:var(--ember);color:#fff;transform:translateY(-2px)}
+.ipanel{margin-top:6px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--crimson);border-radius:8px;min-height:92px}
+.ipanel b{display:block;font:700 22px "Reem Kufi",sans-serif;margin-bottom:4px}
+.ipanel span{color:var(--sub)}
+.strip.wrapped{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;justify-content:center}
+.strip.wrapped .chip{min-width:0;padding:10px 16px;font-size:16px}
+#menu{max-height:70vh;overflow:auto}
+.tcard{padding:22px 20px;border-radius:8px 22px 8px 22px;background:linear-gradient(160deg,var(--crimson),#3a0a10);color:var(--bone)}
+.tcard small{display:inline-block;background:rgba(0,0,0,.35);border-radius:10px;padding:0 12px;font-size:13px;line-height:1.9}
+.tcard h3{font-size:32px;margin:10px 0 6px}
+.tcard p{margin:0;color:var(--bone);opacity:.92}
+.tnote{margin:10px 0 0;font-size:14px}
+.ff{display:grid;gap:10px}
+.seg{display:flex;gap:10px}
+.seg label{flex:1}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:12px 10px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:500}
+.seg input:checked+span{background:var(--crimson);border-color:var(--ember);color:#fff}
+.seg input:focus-visible+span{outline:2px solid var(--ember);outline-offset:3px}
+.fl{font-size:15px;color:var(--sub)}
+.ff textarea,.ff input[type=text]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit}
+.ff .cta{border:1px solid var(--ember);cursor:pointer;max-width:none;width:100%}
+.fh{font-size:14px;margin:0}
+.tl{position:relative;margin-top:18px;padding-inline-start:28px;min-height:24px}
+.tl::before{content:"";position:absolute;inset-block:8px;inset-inline-start:8px;width:2px;background:var(--line)}
+.tl::after{content:"";position:absolute;top:2px;inset-inline-start:3px;width:12px;height:12px;border-radius:50%;background:var(--ember)}
+.tl-fill{position:absolute;top:8px;inset-inline-start:8px;width:2px;height:0;background:var(--ember);transition:height .8s ease}
+.era{position:relative;display:none;margin-bottom:12px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.era.pre{display:block;opacity:0}
+.era.shown{display:block;opacity:1;animation:rise .6s ease both}
+.era::before{content:"";position:absolute;inset-inline-start:-27px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 4px var(--bg)}
+.era .dt{display:block;color:var(--ember);font-size:13px;line-height:1.6}
+.era b{display:block;font:700 19px "Reem Kufi",sans-serif}
+.era p{margin:4px 0 0;color:var(--sub)}
+.tl-btn{border:1px solid var(--ember);cursor:pointer;width:100%;max-width:340px;margin-top:14px}
+.tl-btn:disabled{opacity:.6}
+@media (prefers-reduced-motion:reduce){.tl-fill{transition:none}.era.shown{animation:none}}
+.stage{position:relative;max-width:520px;margin:0 auto;padding:30px 16px 0;min-height:310px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#5a0f1a,#1c1012);animation:rise 1s ease both}
+.stage .scene{position:absolute;inset:0;margin:0;max-width:none;animation:none}
+.stage .scene svg{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
+.stage .scene .sky{fill:none}
+.stage h1,.stage p{position:relative;z-index:1;text-shadow:0 2px 14px #000,0 0 4px rgba(0,0,0,.85)}
+.stage p{color:var(--bone);margin:10px auto 0}
+@media (prefers-reduced-motion:reduce){.stage{animation:none}}
+section{padding:36px 0;border-top:1px solid var(--line)}
+section h2{font-size:28px;margin-bottom:12px}
+section p{margin:0 0 14px;color:var(--sub)}
+
+/* two entry points */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair a{display:block;padding:18px 14px;background:var(--card);border:1px solid var(--line);border-radius:18px 18px 4px 18px;text-decoration:none;text-align:center}
+.pair b{display:block;font:700 18px "Reem Kufi",sans-serif;margin-bottom:4px}
+.pair span{font-size:14px;line-height:1.6;color:var(--sub)}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.pillar{text-decoration:none;aspect-ratio:1.3;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;background:linear-gradient(160deg,var(--crimson),#3a0a10);color:var(--bone);border-radius:6px}
+.pillars .pillar:nth-child(4n+2),.pillars .pillar:nth-child(4n+3){background:#000;border:1px solid var(--crimson)}
+.pillars.sm .pillar{aspect-ratio:auto;min-height:98px;padding:12px 14px}
+.pillars.sm h3{font-size:20px}
+.pillars.sm span{font-size:13px}
+.pillar h3{font-size:24px}
+.pillar span{font-size:14px;opacity:.85;line-height:1.5}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:500;display:flex;justify-content:space-between;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;color:var(--ember);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 16px 14px;margin:0}
+
+
+.goals{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.goals li{padding:14px 16px;background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--crimson);border-radius:6px 14px 14px 6px}
+.goals b{display:block;font:700 18px "Reem Kufi",sans-serif;margin-bottom:2px}
+.goals span{color:var(--sub);font-size:15px;line-height:1.7}
+h3.grp{font-size:19px;margin:22px 0 10px;color:var(--ember)}
+.soc{display:flex;justify-content:center;flex-wrap:nowrap;gap:10px;margin-bottom:22px}
+.tile{width:clamp(46px,14.5vw,62px);aspect-ratio:1;border-radius:17px;background:#dcdedf;border:2px solid #6a6a6a;color:#26262a;display:grid;place-items:center;text-decoration:none;transition:background .15s,color .15s,transform .15s}
+.tile svg{width:52%;height:52%;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.tile .f{fill:currentColor;stroke:none}
+.tile .cut{stroke:#dcdedf;stroke-width:1.3;fill:none;transition:stroke .15s}
+a.tile:hover,a.tile:focus-visible{background:var(--crimson);border-color:var(--ember);color:#fff}
+a.tile:hover .cut,a.tile:focus-visible .cut{stroke:var(--crimson)}
+a.tile:active{transform:translateY(1px)}
+span.tile{cursor:default}
+footer{padding:36px 0 48px;border-top:1px solid var(--line);text-align:center}
+footer small{color:var(--sub);display:block}
+@media (prefers-reduced-motion:reduce){.logo path{animation:none;opacity:1}.scene{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="top">
+  <header>
+    <a class="name" href="#top" style="text-decoration:none">إينوما</a>
+    <button class="tbtn" id="mbtn" aria-label="القائمة" aria-expanded="false" aria-controls="menu">☰</button>
+    <nav id="menu" hidden>
+      <a href="#top">الرئيسية</a><a href="#vision">رؤيتنا</a><a href="#media">المركز الإعلامي</a><a href="#timeline">رحلة عبر التاريخ</a><a href="#prov">محافظات العراق</a><a href="#today">شخصية اليوم</a><a href="#iraq">العراق واحد</a><a href="#faq">الأسئلة الشائعة</a><a href="#feedback">شاركنا رأيك</a><a href="#join">انضم معنا</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="logo" role="img" aria-label="شعار إينوما"><svg viewBox="0 0 753.0 203.2" aria-hidden="true"><path style="--i:0" d="M686.0 13.8L685.8 14.8L689.8 24.0L693.0 34.8L694.8 44.8L695.8 54.8L696.2 90.8L696.0 181.5L697.0 183.5L704.2 184.2L705.2 182.0L713.8 112.5L723.0 49.0L724.8 43.0L727.8 37.0L732.5 31.0L740.8 22.2L741.0 21.2L738.8 20.5L721.0 18.8Z"/><path style="--i:1" d="M621.8 12.2L611.8 36.0L602.5 54.8L602.8 56.0L611.2 55.0L621.0 54.8L631.5 55.8L641.8 57.8L661.0 64.0L681.8 73.0L692.8 78.8L693.8 78.5L694.8 74.2L693.5 72.8L679.8 64.2L655.8 48.2L649.8 43.8L641.2 36.2L633.0 27.5L627.8 20.5L622.5 12.0Z"/><path style="--i:2" d="M516.0 135.0L516.8 180.5L517.2 181.0L526.0 175.5L535.5 171.0L543.2 168.8L549.2 167.8L588.2 165.0L651.5 162.8L665.5 161.8L666.2 160.8L666.2 157.0L665.0 156.0L639.8 154.0L638.2 153.0L641.0 126.0L645.0 105.5L646.8 100.0L650.2 92.5L659.2 80.0L659.5 78.8L624.0 77.8L610.8 77.8L610.5 78.2L620.0 93.8L624.0 105.8L627.0 122.0L629.0 140.0L629.8 152.0L628.5 153.0L579.8 148.8L578.2 147.2L581.8 118.0L585.0 103.5L589.0 93.8L599.8 78.8L599.5 77.8L571.2 77.0L550.2 75.8L550.2 77.0L556.0 85.2L559.8 92.0L563.8 103.2L566.8 118.2L568.8 134.8L569.2 146.5L568.2 147.8L554.5 146.8L542.5 145.0L533.0 142.0L517.2 134.2L516.5 134.2Z"/><path style="--i:3" d="M524.2 43.5L523.2 44.5L521.0 50.8L517.0 59.0L510.0 69.5L500.8 79.0L494.2 83.8L487.0 88.0L486.8 89.0L500.8 96.2L512.8 104.5L523.2 115.2L528.5 122.5L531.8 127.8L533.0 127.8L535.5 126.2L535.5 124.8L531.8 111.5L527.8 88.8L526.8 78.2L526.8 57.0L528.2 44.8L527.0 43.8Z"/><path style="--i:4" d="M455.0 14.5L407.2 14.8L406.8 15.2L414.0 27.8L416.8 34.2L418.8 41.2L422.8 65.5L427.0 104.0L427.0 108.2L426.2 109.0L380.8 105.8L379.5 104.8L380.8 86.8L382.8 68.5L387.0 42.2L389.2 34.2L391.8 28.5L399.5 15.2L398.8 14.8L351.2 15.0L351.2 16.0L357.0 25.0L359.2 29.5L362.0 37.2L366.0 55.2L368.8 75.2L370.8 95.2L371.0 104.0L370.2 104.8L367.0 104.8L355.0 102.8L348.8 100.8L336.0 94.2L335.2 94.5L335.2 116.0L336.0 140.0L337.2 140.0L343.8 134.8L350.5 131.0L356.0 128.8L362.2 127.0L376.5 125.0L407.5 122.5L408.8 124.0L405.8 137.5L401.8 148.8L396.5 158.8L389.2 169.8L374.0 187.2L373.8 188.0L374.2 189.0L376.8 191.2L378.0 190.8L395.0 177.5L407.2 169.5L420.5 162.0L439.2 153.0L439.2 152.2L421.5 134.2L413.2 123.5L413.5 122.2L415.0 121.8L470.2 118.0L471.5 117.8L472.2 116.8L472.0 113.0L471.0 112.0L435.5 109.5L434.5 108.5L437.0 78.2L439.8 58.0L441.8 47.5L445.8 33.2L448.8 27.0L455.5 15.2Z"/><path style="--i:5" d="M309.8 16.8L301.5 32.2L292.0 45.2L282.5 54.0L276.8 58.0L267.5 63.0L267.2 64.0L280.2 70.5L288.2 76.0L297.8 85.8L304.2 95.2L298.8 105.0L291.0 114.8L281.2 123.5L270.0 131.0L269.2 132.5L284.5 141.2L290.2 145.8L295.5 150.8L300.5 156.5L304.8 162.5L312.5 178.2L314.2 178.5L316.2 177.8L316.8 176.0L313.8 163.5L310.8 147.2L308.8 126.5L309.0 114.5L310.0 105.2L311.8 95.8L310.0 90.2L308.8 82.5L307.8 71.2L307.8 57.2L309.8 37.5L312.0 24.8L313.5 19.2L313.5 17.8L313.0 17.2Z"/><path style="--i:6" d="M234.2 17.0L213.2 17.8L178.8 17.2L179.2 19.2L185.8 29.0L189.0 35.0L191.0 41.2L192.0 47.5L193.8 75.8L198.0 182.8L198.8 183.8L205.8 183.8L206.8 182.2L213.8 97.5L217.8 62.5L220.0 47.8L223.0 37.5L227.5 29.0L234.8 17.5Z"/><path style="--i:7" d="M91.8 71.2L92.2 121.0L92.8 122.0L94.0 121.8L99.5 117.2L105.8 113.2L119.8 106.8L128.0 104.0L140.5 100.8L163.2 96.8L165.0 95.5L165.0 92.2L164.2 91.2L153.5 90.8L136.5 89.0L125.0 87.0L117.2 85.0L111.5 83.0L105.2 80.0L92.8 71.0Z"/><path style="--i:8" d="M12.0 23.5L14.0 41.5L18.8 99.0L24.8 181.0L25.5 182.0L43.8 176.0L59.8 173.0L122.8 166.0L162.2 162.5L164.5 161.5L164.5 157.8L163.8 156.8L119.8 155.0L68.2 151.8L47.2 149.8L38.8 148.0L37.0 146.5L37.0 139.0L38.0 126.2L39.0 120.5L41.2 116.0L47.5 110.5L59.0 103.8L66.8 101.0L77.2 98.8L78.0 98.0L78.0 96.0L77.0 94.8L67.8 94.0L57.8 92.0L47.2 88.0L42.0 84.5L41.2 82.5L41.8 73.8L44.8 52.0L46.0 50.0L51.0 48.8L97.0 41.0L157.5 32.2L159.0 31.2L158.8 27.5L158.0 26.8L77.8 26.8L46.8 26.2L26.5 25.0L12.5 23.0Z"/></svg></div>
+      <div class="stage">
+        <div class="scene"><div id="scn"></div></div>
+        <h1>إينوما</h1>
+        <p>نسأل من حيث بدأ كل شيء. مبادرة فكرية وطنية تفكّك الأفكار وتنقدها في السياسة والاقتصاد والفلسفة والتاريخ.</p>
+      </div>
+      <a class="cta" href="#join">انضم معنا</a>
+      <div class="cap" id="cap"></div>
+    </div>
+
+    
+
+    <section id="vision">
+      <h2>رؤيتنا وأهدافنا</h2>
+      <p>نؤمن أن حب الوطن هو الأساس الذي نبني عليه كل فكرة. نحب العراق بتاريخه وناسه، ونريد له أن يُبنى بالعلم والوعي والعمل المشترك.</p>
+      <p>شعبنا واحد. نرفض أي تفرقة بين أبنائه على أساس الدين أو المذهب أو القومية أو المنطقة، ونرى في التنوع قوة ينبغي أن تجمعنا، لا أن تفرّقنا.</p>
+      <ul class="goals">
+        <li><b>الوطنية قبل كل انتماء</b><span>الولاء الأول للوطن وأهله جميعاً.</span></li>
+        <li><b>مساواة بين الجميع</b><span>لا فرق بين ابن وابن، والكل شريك في الوطن.</span></li>
+        <li><b>وحدة تقوم على الوعي</b><span>نواجه الفتنة بالمعرفة والحوار الهادئ، لا بالشتم والتخوين.</span></li>
+      </ul>
+    
+      <details class="fold"><summary>أهدافنا</summary>
+<ul class="goals">
+        <li><b>نشر التفكير النقدي</b><span>أن يتعوّد القارئ على السؤال عن المصدر والدليل قبل أن يقبل أي فكرة أو يرفضها.</span></li>
+        <li><b>تبسيط المعرفة</b><span>تحويل الفلسفة والاقتصاد والسياسة والتاريخ إلى مقاطع قصيرة وواضحة دون تسطيح.</span></li>
+        <li><b>قراءة تاريخنا بإنصاف</b><span>العودة إلى الجذور والوثائق، بعيداً عن الروايات الجاهزة والتمجيد والتشويه.</span></li>
+        <li><b>مساحة نقاش محترمة</b><span>أن يختلف الناس في الرأي دون إساءة، وأن يكون الحوار هو الغاية لا الغلبة.</span></li>
+        <li><b>بناء جيل قارئ</b><span>تشجيع القراءة والكتابة والبحث، وفتح الباب أمام الشباب للمشاركة في صنع المحتوى.</span></li>
+        <li><b>التطور إلى كيان منظّم</b><span>الانتقال من صفحة تنشر المحتوى إلى مبادرة لها هيكل وفرق عمل وبرامج على الأرض.</span></li>
+      </ul>
+      </details>
+    </section>
+
+    
+
+    
+
+    <section id="media">
+      <h2>المركز الإعلامي</h2>
+      <p>شخصيات وأفكار نتناولها في مقاطعنا، من حضارات العراق القديمة إلى فلاسفة العالم.</p>
+      <details class="fold mfold"><summary><span>افتح المركز الإعلامي</span><small>55</small></summary>
+      <details class="fold"><summary><span>من العراق القديم</span><small>11</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>حمورابي</h3><span>شريعته من أشهر القوانين المكتوبة</span></div>
+        <div class="pillar"><h3>أورنمو</h3><span>صاحب أقدم قانون مكتوب معروف</span></div>
+        <div class="pillar"><h3>نبوخذنصر الثاني</h3><span>بابل وجنائنها</span></div>
+        <div class="pillar"><h3>سرجون الأكدي</h3><span>أول إمبراطورية في التاريخ</span></div>
+        <div class="pillar"><h3>آشوربانيبال</h3><span>مكتبة نينوى</span></div>
+        <div class="pillar"><h3>سنحاريب</h3><span>نينوى عاصمة الإمبراطورية</span></div>
+        <div class="pillar"><h3>جلجامش</h3><span>ملحمة البحث عن الخلود</span></div>
+        <div class="pillar"><h3>إنخيدوانا</h3><span>أقدم مؤلفة معروفة بالاسم</span></div>
+        <div class="pillar"><h3>الملكة بوآبي</h3><span>ملكة أور</span></div>
+        <div class="pillar"><h3>الملكة كوبابا</h3><span>ملكة سومرية حكمت كيش</span></div>
+        <div class="pillar"><h3>الملكة نقيّا</h3><span>ملكة آشورية</span></div>
+      </div></details>
+      <details class="fold"><summary><span>علماء</span><small>8</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>ابن الهيثم</h3><span>أبو البصريات</span></div>
+        <div class="pillar"><h3>بنو موسى</h3><span>الهندسة الميكانيكية</span></div>
+        <div class="pillar"><h3>حنين بن إسحاق</h3><span>الطب والترجمة</span></div>
+        <div class="pillar"><h3>الخوارزمي</h3><span>الجبر في بيت الحكمة</span></div>
+        <div class="pillar"><h3>عبد الجبار عبد الله</h3><span>الفيزياء</span></div>
+        <div class="pillar"><h3>فاضل الجنابي</h3><span>الطاقة الذرية</span></div>
+        <div class="pillar"><h3>فاروق القاسم</h3><span>جيولوجيا النفط وإدارة الثروة</span></div>
+        <div class="pillar"><h3>نادية مراد</h3><span>نوبل للسلام 2018</span></div>
+      </div></details>
+      <details class="fold"><summary><span>مفكرون ورواد من العراق</span><small>3</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>الكندي</h3><span>فيلسوف العرب</span></div>
+        <div class="pillar"><h3>علي الوردي</h3><span>المجتمع العراقي</span></div>
+        <div class="pillar"><h3>نزيهة الدليمي</h3><span>أول وزيرة عربية</span></div>
+      </div></details>
+      <details class="fold"><summary><span>شعراء وأدباء</span><small>9</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>الجواهري</h3><span>شاعر العرب الأكبر</span></div>
+        <div class="pillar"><h3>بدر شاكر السياب</h3><span>رائد الشعر الحر</span></div>
+        <div class="pillar"><h3>نازك الملائكة</h3><span>التجديد في القصيدة</span></div>
+        <div class="pillar"><h3>بلند الحيدري</h3><span>الحداثة الشعرية</span></div>
+        <div class="pillar"><h3>مظفر النواب</h3><span>شاعر الوجدان العراقي</span></div>
+        <div class="pillar"><h3>عبد الوهاب البياتي</h3><span>رائد الشعر الحديث</span></div>
+        <div class="pillar"><h3>معروف الرصافي</h3><span>شاعر الإصلاح</span></div>
+        <div class="pillar"><h3>المتنبي</h3><span>الشعر والطموح</span></div>
+        <div class="pillar"><h3>الجاحظ</h3><span>الأدب والمعرفة</span></div>
+      </div></details>
+      <details class="fold"><summary><span>عمارة وفن</span><small>11</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>زها حديد</h3><span>ملكة المنحنيات</span></div>
+        <div class="pillar"><h3>رفعت الجادرجي</h3><span>العمارة العراقية الحديثة</span></div>
+        <div class="pillar"><h3>محمد مكية</h3><span>عمارة الأصالة</span></div>
+        <div class="pillar"><h3>جواد سليم</h3><span>نحّات الهوية العراقية</span></div>
+        <div class="pillar"><h3>فائق حسن</h3><span>رائد الفن التشكيلي</span></div>
+        <div class="pillar"><h3>شاكر حسن آل سعيد</h3><span>فنان وفيلسوف</span></div>
+        <div class="pillar"><h3>ضياء العزاوي</h3><span>التشكيل المعاصر</span></div>
+        <div class="pillar"><h3>لورنا سليم</h3><span>فنانة تشكيلية</span></div>
+        <div class="pillar"><h3>سعاد العطار</h3><span>فنانة تشكيلية</span></div>
+        <div class="pillar"><h3>منير بشير</h3><span>سلطان العود</span></div>
+        <div class="pillar"><h3>ناظم الغزالي</h3><span>صوت بغداد</span></div>
+      </div></details>
+      <details class="fold"><summary><span>فلاسفة ومفكرون من العالم</span><small>13</small></summary><div class="pillars sm">
+        <div class="pillar"><h3>سقراط</h3><span>السؤال طريقاً للحقيقة</span></div>
+        <div class="pillar"><h3>أفلاطون</h3><span>الدولة المثالية</span></div>
+        <div class="pillar"><h3>أرسطو</h3><span>المنطق والسياسة</span></div>
+        <div class="pillar"><h3>ابن رشد</h3><span>العقل والفلسفة</span></div>
+        <div class="pillar"><h3>ابن سينا</h3><span>الطب والفلسفة</span></div>
+        <div class="pillar"><h3>ابن خلدون</h3><span>العمران والدولة</span></div>
+        <div class="pillar"><h3>ميكافيلي</h3><span>السلطة والحكم</span></div>
+        <div class="pillar"><h3>كانط</h3><span>حدود العقل</span></div>
+        <div class="pillar"><h3>جورج أورويل</h3><span>نقد السلطة والاستبداد</span></div>
+        <div class="pillar"><h3>أغاثا كريستي</h3><span>كتبت «جريمة في بلاد الرافدين»</span></div>
+        <div class="pillar"><h3>دوستويفسكي</h3><span>أعماق النفس البشرية</span></div>
+        <div class="pillar"><h3>نيتشه</h3><span>نقد القيم</span></div>
+        <div class="pillar"><h3>ماركس</h3><span>الاقتصاد والطبقات</span></div>
+      </div></details>
+      </details>
+    </section>
+
+    <section id="timeline">
+      <h2>رحلة عبر التاريخ</h2>
+      <p>من أولى المدن إلى العراق الحديث. اضغط الزر ليتقدم الخط إلى الحقبة التالية، ثم يتوقف حتى تضغط مرة أخرى. التواريخ القديمة تقريبية.</p>
+      <div class="tl" id="tl" aria-live="polite">
+        <div class="tl-fill" id="tlf"></div>
+        <div class="era"><small class="dt">نحو 3500 إلى 2000 ق.م</small><b>سومر وأكد</b><p>أولى المدن والكتابة المسمارية، أور والوركاء ونفر، وسرجون الأكدي مؤسس أول إمبراطورية.</p></div>
+        <div class="era"><small class="dt">نحو 1900 إلى 1600 ق.م</small><b>بابل القديمة</b><p>حمورابي وشريعته، وبابل مركز العلم والفلك والرياضيات.</p></div>
+        <div class="era"><small class="dt">نحو 900 إلى 612 ق.م</small><b>آشور</b><p>نينوى ونمرود، وإمبراطورية امتدت من الخليج إلى مصر، ومكتبة آشوربانيبال.</p></div>
+        <div class="era"><small class="dt">626 إلى 539 ق.م</small><b>بابل الحديثة</b><p>نبوخذنصر الثاني وبوابة عشتار والحدائق المعلقة كما تروي الأخبار القديمة.</p></div>
+        <div class="era"><small class="dt">539 ق.م إلى 637 م</small><b>الفرس واليونان والفرثيون والساسانيون</b><p>تعاقبت على العراق دول كبرى، وبقي من آثارها الحضر وطاق كسرى في المدائن.</p></div>
+        <div class="era"><small class="dt">637 إلى 750 م</small><b>الكوفة والبصرة</b><p>مدينتان تأسستا في العهد الإسلامي الأول وصارتا مركزين للعلم واللغة والشعر.</p></div>
+        <div class="era"><small class="dt">762 إلى 1258 م</small><b>بغداد العباسية</b><p>مدينة السلام وبيت الحكمة، وفيها عاش الخوارزمي والكندي وبنو موسى.</p></div>
+        <div class="era"><small class="dt">1258 إلى 1917 م</small><b>من سقوط بغداد إلى العهد العثماني</b><p>عهود المغول والتركمان والصفويين والعثمانيين، وبقي العراق ملتقى الطرق والثقافات.</p></div>
+        <div class="era"><small class="dt">من 1921 إلى اليوم</small><b>العراق الحديث</b><p>قيام الدولة العراقية الحديثة عام 1921 والاستقلال عام 1932، ثم مراحل متعددة نتناولها في مقاطعنا.</p></div>
+      </div>
+      <button class="cta tl-btn" id="tln" type="button">ابدأ الرحلة</button>
+      <p class="tnote" id="tlc"></p>
+    </section>
+
+    <section id="prov">
+      <h2>محافظات العراق</h2>
+      <p>ثماني عشرة محافظة، لكل منها معلمها وحكايتها. اضغط على أي اسم لتقرأ نبذة قصيرة. الترتيب أبجدي، لا يفضّل أحداً على أحد.</p>
+      <div class="strip wrapped">
+        <button class="chip" type="button" aria-pressed="false" data-d="قلعتها من أقدم المدن المأهولة في العالم.">أربيل</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="ضفاف الفرات وبوابة الصحراء الغربية، وفيها هيت بنواعيرها وينابيعها القديمة.">الأنبار</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="عاصمة نبوخذنصر، وفيها آثار بوابة عشتار وأسوار المدينة القديمة.">بابل</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="بوابة العراق على الخليج، ومدينة الجاحظ والخليل بن أحمد ومدرستها اللغوية.">البصرة</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مدينة السلام عاصمة العباسيين وبيت الحكمة، وفيها آثار طاق كسرى في المدائن.">بغداد</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="جبال وشلالات في أقصى الشمال، وبلدة العمادية العتيقة.">دهوك</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="بساتين النخيل والبرتقال على ضفاف نهر ديالى، ومركزها بعقوبة.">ديالى</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مهد حضارة سومر وزقورة أور، وعلى أطرافها أهوار الجنوب.">ذي قار</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مدينة الأدب والفن والمقاهي الثقافية في كردستان.">السليمانية</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="فيها ملوية سامراء وعاصمة العباسيين الثانية، ومدينة تكريت.">صلاح الدين</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="الديوانية وآثار مدينة نفر السومرية، المركز الديني لسومر.">القادسية</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مدينة الأدب والبساتين والتجارة، ومقصد الزوار من أنحاء العالم.">كربلاء</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مدينة متعددة المكونات، وقلعتها من أقدم معالمها.">كركوك</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="السماوة وبادية الجنوب، وفيها آثار الوركاء من أقدم مدن العالم.">المثنى</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="العمارة وأهوار الجنوب على ضفاف دجلة.">ميسان</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مدينة العلم والشعر والمكتبات العريقة.">النجف</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="الموصل ونمرود ونينوى الآشورية والحضر.">نينوى</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="الكوت على ضفاف دجلة، وقد سُمّيت باسم مدينة واسط التاريخية.">واسط</button>
+      </div>
+      <div class="ipanel" aria-live="polite"><b>اختر محافظة</b><span>ستظهر هنا نبذة عنها.</span></div>
+    </section>
+
+    <section id="today">
+      <h2>شخصية اليوم</h2>
+      <div class="tcard"><small id="tf">حضارة بابل</small><h3 id="tn">حمورابي</h3><p id="tb">سادس ملوك بابل الأولى، اشتهرت شريعته المنقوشة على مسلة حجرية، وهي من أشهر القوانين المكتوبة في التاريخ.</p></div>
+      <p class="tnote">تتغير الشخصية كل يوم.</p>
+    </section>
+
+    <section id="iraq">
+      <h2>العراق واحد</h2>
+      <p>فسيفساء قديمة من القوميات والأديان والمذاهب، عاشت على ضفاف النهرين آلاف السنين. اضغط على أي اسم لتقرأ نبذة قصيرة. الترتيب أبجدي، لا يفضّل أحداً على أحد.</p>
+      <div class="strip-t">القوميات</div>
+      <div class="strip">
+        <button class="chip" type="button" aria-pressed="false" data-d="ورثة حضارة آشور، ولغتهم الآرامية الحديثة.">الآشوريون</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="جالية عريقة في بغداد والبصرة والموصل وكردستان.">الأرمن</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="من تلعفر إلى كركوك ومندلي، ولهم تراث أدبي وفني غني.">التركمان</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="تراث مسيحي مشرقي عريق في الموصل وسهل نينوى.">السريان</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="مكوّن عريق في سهل نينوى، ولهم تراثهم الخاص.">الشبك</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="لغتهم لغة العلم والأدب التي ازدهرت في بغداد.">العرب</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="لغة وتراث عريق في شمال العراق، وأربيل من أقدم المدن المأهولة.">الكرد</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="كنيسة عريقة وتراث آرامي في بغداد والموصل وسهل نينوى.">الكلدان</button>
+      </div>
+      <div class="strip-t">الأديان والمذاهب</div>
+      <div class="strip">
+        <button class="chip" type="button" aria-pressed="false" data-d="بمذاهبه السنية والشيعية، ومدارسه العلمية الكبرى في الكوفة والبصرة وبغداد والنجف.">الإسلام</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="ديانة قديمة، ويتركز أتباعها في سنجار ولالش.">الإيزيدية</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="ديانة قديمة على ضفاف الأنهار، ولهم لغتهم المندائية.">الصابئة المندائيون</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="ديانة لها تراثها الروحي الخاص في كركوك وخانقين.">الكاكائية</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="كنائس من أقدم كنائس العالم: كلدانية وآشورية وسريانية وأرمنية وغيرها.">المسيحية</button>
+        <button class="chip" type="button" aria-pressed="false" data-d="عاشت في العراق قروناً طويلة، وفي بابل كُتب التلمود البابلي.">اليهودية</button>
+      </div>
+      <div class="ipanel" id="ipanel" aria-live="polite"><b>اختر اسماً من الشريط</b><span>ستظهر هنا نبذة عنه.</span></div>
+      <blockquote class="motto">في النهاية كلنا عراقيون، وتنوعنا مصدر قوتنا.</blockquote>
+    </section>
+
+    <section id="faq">
+      <h2>الأسئلة الشائعة</h2>
+      <details><summary>ما هي إينوما؟</summary><p>مبادرة فكرية وطنية بدأت من صفحة على إنستغرام، هدفها نشر التفكير النقدي وتبسيط المعرفة في السياسة والاقتصاد والفلسفة والتاريخ.</p></details>
+      <details><summary>ماذا يعني اسم إينوما؟</summary><p>اسم مأخوذ من أولى كلمات ملحمة الخلق البابلية «إينوما إليش»، أي «حين في الأعلى». يرمز إلى البدايات وإلى السؤال الأول، ولهذا شعارنا بالخط المسماري.</p></details>
+      <details><summary>هل إينوما حزب سياسي؟</summary><p>لا. نحن مبادرة فكرية وثقافية نقدية، ولا نعمل لصالح حزب أو جهة بعينها.</p></details>
+      <details><summary>من يستطيع الانضمام؟</summary><p>كل من يرغب في السؤال والنقاش بصدق، بغض النظر عن خلفيته. ستُضاف شروط الانضمام عند إقرارها.</p></details>
+      <details><summary>هل يمكنني المساهمة بالكتابة أو التصميم؟</summary><p>نعم، نرحب بالكتّاب والمصممين والباحثين والمونتيرين. راسلنا وأرفق نموذجاً من عملك.</p></details>
+      <details><summary>أين أتابعكم؟</summary><p>على إنستغرام وتيك توك وإكس وسبستاك وتلكرام وأبسكرولد، وكلها باسم إينوما.</p></details>
+    </section>
+
+
+    <section id="feedback">
+      <h2>شاركنا رأيك</h2>
+      <p>عندك تعليق أو فكرة تريدنا أن ننفذها؟ اكتبها هنا وتصل إلى بريد إينوما.</p>
+      <form id="ff" class="ff">
+        <label class="fl" for="fm">تعليقك</label>
+        <textarea id="fm" rows="5" required placeholder="اكتب هنا..."></textarea>
+        <label class="fl" for="fn">اسمك (اختياري)</label>
+        <input id="fn" type="text" autocomplete="name">
+        <button class="cta" type="submit">إرسال عبر البريد</button>
+        <p class="fh" id="fh">سيفتح تطبيق البريد في هاتفك والرسالة جاهزة، فاضغط إرسال. وإن لم يفتح، أرسلها إلى enuma.iq@gmail.com.</p>
+      </form>
+    </section>
+
+    <section id="join">
+      <h2>انضم معنا</h2>
+      <p>تابع الصفحة وشارك المقاطع، وراسلنا على البريد enuma.iq@gmail.com إن أردت أن تساهم بالكتابة أو التصميم أو البحث.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="soc" dir="ltr">
+      <a class="tile" href="https://tiktok.com/@Enuma.iq" target="_blank" rel="noopener" aria-label="تيك توك" title="تيك توك"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M16.6 3h-3v11.2a2.6 2.6 0 1 1-2.6-2.6c.3 0 .6 0 .9.1V8.5a5.7 5.7 0 1 0 4.7 5.6V9a6 6 0 0 0 3.5 1.1V7.2A3.5 3.5 0 0 1 16.6 3z"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+      <a class="tile" href="https://instagram.com/enuma.iq" target="_blank" rel="noopener" aria-label="إنستغرام" title="إنستغرام"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.5" stroke-width="2.2"/><circle class="f" cx="12" cy="12" r="3.6"/><circle class="f" cx="17" cy="7" r="1.1"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+      <a class="tile" href="https://x.com/enumaiq" target="_blank" rel="noopener" aria-label="إكس" title="إكس"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M4.5 4h4l11 16h-4z"/><path d="M19.2 4L13.2 10.8M4.8 20l6-6.8" stroke-width="2"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+      <a class="tile" href="https://enuma1.substack.com" target="_blank" rel="noopener" aria-label="سبستاك" title="سبستاك"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M5 4h14v2.4H5zM5 8.6h14V11H5zM5 13h14v8l-7-4-7 4z"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+      <a class="tile" href="https://t.me/enumaiq" target="_blank" rel="noopener" aria-label="تلكرام" title="تلكرام"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M21 3 3 10.2l6.3 2.4L11.7 20l3.2-4.4 4.6 3.5z"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+      <a class="tile" href="https://upscrolled.com/@enumaiq" target="_blank" rel="noopener" aria-label="أبسكرولد" title="أبسكرولد"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-width="2.2"/><path d="M12 17V8M8.2 11.8L12 8l3.8 3.8" stroke-width="2.2"/><path class="cut" d="M18.8 3.2L8 21"/></svg></a>
+    </div>
+    <a href="mailto:enuma.iq@gmail.com" style="display:block;margin-bottom:10px;color:var(--sub)" dir="ltr">enuma.iq@gmail.com</a>
+    <small>إينوما، مبادرة فكرية وطنية. نسأل من حيث بدأ كل شيء.</small>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById('mbtn'),m=document.getElementById('menu');
+  function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o)}
+  b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden)});
+  m.addEventListener('click',function(){set(false)});
+  document.addEventListener('click',function(){set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+
+(function(){
+  var G='<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a0f1a"/><stop offset="1" stop-color="#1c1012"/></linearGradient></defs><rect class="sky" width="400" height="200" rx="14"/><circle class="sun" cx="335" cy="46" r="22"/><rect class="gr" x="0" y="180" width="400" height="20"/>';
+  var S=[
+  {n:"زقورة أور، ذي قار",d:'<rect class="l" x="100" y="140" width="200" height="40"/><rect class="l" x="130" y="108" width="140" height="32"/><rect class="l" x="160" y="80" width="80" height="28"/><rect class="l" x="182" y="58" width="36" height="22"/><polygon class="e" points="178,180 222,180 207,62 193,62"/><rect class="d" x="193" y="66" width="14" height="10"/>'},
+  {n:"بوابة عشتار، بابل",d:'<rect class="l" x="105" y="58" width="40" height="122"/><rect class="l" x="255" y="58" width="40" height="122"/><rect class="l" x="140" y="78" width="120" height="102"/><path class="d" d="M172 180V124a28 28 0 0 1 56 0V180Z"/><rect class="e" x="140" y="100" width="120" height="6"/><rect class="l" x="105" y="46" width="10" height="12"/><rect class="l" x="120" y="46" width="10" height="12"/><rect class="l" x="135" y="46" width="10" height="12"/><rect class="l" x="255" y="46" width="10" height="12"/><rect class="l" x="270" y="46" width="10" height="12"/><rect class="l" x="285" y="46" width="10" height="12"/>'},
+  {n:"ملوية سامراء، صلاح الدين",d:'<rect class="l" x="140" y="154" width="120" height="26"/><rect class="l" x="150" y="128" width="100" height="26"/><rect class="l" x="160" y="102" width="80" height="26"/><rect class="l" x="170" y="76" width="60" height="26"/><rect class="l" x="180" y="50" width="40" height="26"/><rect class="l" x="188" y="28" width="24" height="22"/><path style="fill:none;stroke:#0d0809;stroke-width:3" d="M142 172L258 158M152 146L248 132M162 120L238 106M172 94L228 80M182 68L218 54"/>'},
+  {n:"طاق كسرى، المدائن",d:'<rect class="l" x="40" y="100" width="70" height="80"/><rect class="l" x="290" y="100" width="70" height="80"/><path class="l" d="M110 180V90Q110 28 200 28Q290 28 290 90V180Z"/><path class="d" d="M150 180V104Q150 64 200 64Q250 64 250 104V180Z"/><path class="d" d="M62 180V140a13 13 0 0 1 26 0V180ZM312 180V140a13 13 0 0 1 26 0V180Z"/>'},
+  {n:"المدرسة المستنصرية، بغداد",d:'<rect class="l" x="50" y="110" width="300" height="70"/><rect class="l" x="165" y="76" width="70" height="104"/><path class="d" d="M182 180V122Q200 86 218 122V180Z"/><path class="d" d="M72 180V150a10 10 0 0 1 20 0V180ZM104 180V150a10 10 0 0 1 20 0V180ZM136 180V150a10 10 0 0 1 20 0V180ZM244 180V150a10 10 0 0 1 20 0V180ZM276 180V150a10 10 0 0 1 20 0V180ZM308 180V150a10 10 0 0 1 20 0V180Z"/><rect class="e" x="50" y="110" width="300" height="5"/>'},
+  {n:"الحضر، نينوى",d:'<rect class="l" x="60" y="62" width="280" height="118"/><path class="d" d="M163 180V112a37 37 0 0 1 74 0V180Z"/><path class="d" d="M88 180V132a17 17 0 0 1 34 0V180ZM278 180V132a17 17 0 0 1 34 0V180Z"/><rect class="e" x="60" y="62" width="280" height="6"/><rect class="e" x="60" y="86" width="280" height="3"/>'},
+  {n:"قلعة أربيل",d:'<path class="l" d="M25 180L58 128Q68 118 90 118H310Q332 118 342 128L375 180Z"/><rect class="l" x="115" y="94" width="42" height="24"/><rect class="l" x="168" y="80" width="64" height="38"/><rect class="l" x="244" y="98" width="38" height="20"/><rect class="l" x="298" y="104" width="22" height="14"/><path class="d" d="M188 180V152a12 12 0 0 1 24 0V180Z"/><rect class="e" x="168" y="80" width="64" height="5"/>'},
+  {n:"الأهوار، جنوب العراق",d:'<path class="l" d="M90 180Q90 62 200 62Q310 62 310 180Z"/><path class="d" d="M126 180Q126 98 200 98Q274 98 274 180Z"/><path style="fill:none;stroke:#e8505e;stroke-width:3" d="M90 180Q90 62 200 62"/><path style="fill:none;stroke:#c42336;stroke-width:4;stroke-linecap:round" d="M30 180L26 126M40 180L42 112M52 180L50 130M350 180L354 120M362 180L360 134"/><path class="e" d="M232 176Q290 192 360 170L358 176Q292 200 228 182Z"/>'}
+  ];
+  var k='enoma_l',i=Math.floor(Math.random()*S.length);
+  try{var p=localStorage.getItem(k);if(p!==null&&+p===i){i=(i+1+Math.floor(Math.random()*(S.length-1)))%S.length}localStorage.setItem(k,i)}catch(e){}
+  var c=S[i];
+  document.getElementById('scn').innerHTML='<svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet" role="img" aria-label="'+c.n+'">'+G+c.d+'</svg>';
+  document.getElementById('cap').textContent=c.n;
+})();
+(function(){
+  document.querySelectorAll('section').forEach(function(sec){
+    var p=sec.querySelector('.ipanel'),chips=sec.querySelectorAll('.chip');
+    if(!p||!chips.length)return;
+    chips.forEach(function(c){c.addEventListener('click',function(){
+      chips.forEach(function(o){o.setAttribute('aria-pressed',o===c)});
+      p.innerHTML='';var b=document.createElement('b'),t=document.createElement('span');
+      b.textContent=c.textContent;t.textContent=c.getAttribute('data-d');p.appendChild(b);p.appendChild(t);
+    })});
+  });
+})();
+(function(){
+  var tl=document.getElementById('tl'),fill=document.getElementById('tlf'),btn=document.getElementById('tln'),cnt=document.getElementById('tlc');
+  var eras=tl.querySelectorAll('.era'),i=0,busy=false;
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function label(){
+    btn.textContent=i===0?'ابدأ الرحلة':(i>=eras.length?'أعد الرحلة من البداية':'التالي');
+    cnt.textContent=i===0?'':i+' من '+eras.length;
+  }
+  btn.addEventListener('click',function(){
+    if(busy)return;
+    if(i>=eras.length){
+      eras.forEach(function(e){e.className='era'});
+      fill.style.height='0px';i=0;label();return;
+    }
+    busy=true;btn.disabled=true;
+    var e=eras[i];e.className='era pre';
+    fill.style.height=Math.max(0,e.offsetTop+26-8)+'px';
+    setTimeout(function(){
+      e.className='era shown';i++;label();
+      e.scrollIntoView({behavior:calm?'auto':'smooth',block:'nearest'});
+      busy=false;btn.disabled=false;
+    },calm?0:800);
+  });
+  label();
+})();
+(function(){
+  var F=[["حضارة بابل", "حمورابي", "سادس ملوك بابل الأولى، اشتهرت شريعته المنقوشة على مسلة حجرية، وهي من أشهر القوانين المكتوبة في التاريخ."], ["العلوم", "ابن الهيثم", "وُلد في البصرة نحو عام 965م، وأسس في كتابه «المناظر» لفهم الرؤية والبصريات بالتجربة والملاحظة."], ["الشعر", "الجواهري", "وُلد في النجف عام 1899، وهو من كبار الشعراء العرب، عُرف بقوة القصيدة العمودية وجرأتها."], ["العمارة", "زها حديد", "مهندسة معمارية وُلدت في بغداد عام 1950، وأول امرأة تنال جائزة بريتزكر للعمارة عام 2004."], ["الشعر", "نازك الملائكة", "وُلدت في بغداد عام 1923، ومن رائدات الشعر الحر، ولها كتاب «قضايا الشعر المعاصر»."], ["علم الاجتماع", "علي الوردي", "حلّل المجتمع العراقي في كتبه، ومنها «لمحات اجتماعية من تاريخ العراق الحديث»."], ["العراق القديم", "إنخيدوانا", "كاهنة وشاعرة أكدية عاشت في أور نحو 2300 ق.م، وهي أقدم مؤلفة معروفة بالاسم في التاريخ."], ["العراق القديم", "آشوربانيبال", "ملك آشور في القرن السابع ق.م، وجمع في نينوى مكتبة فيها آلاف الألواح الطينية، ومنها ملحمة جلجامش."], ["الفلسفة", "الكندي", "يُعرف بـ«فيلسوف العرب»، وُلد في الكوفة وعمل في بغداد في عهد بيت الحكمة."], ["الشعر", "بدر شاكر السياب", "وُلد في جيكور بالبصرة عام 1926، ومن رواد الشعر الحر، وأشهر دواوينه «أنشودة المطر»."], ["السلام", "نادية مراد", "ناجية إيزيدية من سنجار، نالت نوبل للسلام عام 2018 مع دينيس موكويغي لجهودهما ضد العنف الجنسي في الحروب."], ["الفن", "جواد سليم", "نحّات ورسام عراقي، وصاحب «نصب الحرية» في ساحة التحرير ببغداد."], ["الموسيقى", "منير بشير", "عازف عود من الموصل، نقل العود إلى قاعات العزف العالمية."], ["الرواد", "نزيهة الدليمي", "طبيبة وسياسية، وأول وزيرة في العالم العربي عام 1959."], ["الرياضيات", "الخوارزمي", "عالم رياضيات وفلك عمل في بيت الحكمة ببغداد، ومنه جاءت كلمتا «الجبر» و«الخوارزميات»."], ["الهندسة", "بنو موسى", "ثلاثة إخوة عملوا في بغداد العباسية، وألّفوا «كتاب الحيل» في الآلات الميكانيكية."]];
+  var d=new Date(),n=Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/864e5);
+  var f=F[((n%F.length)+F.length)%F.length];
+  document.getElementById('tf').textContent=f[0];
+  document.getElementById('tn').textContent=f[1];
+  document.getElementById('tb').textContent=f[2];
+})();
+(function(){
+  var form=document.getElementById('ff');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var t='تعليق',
+        m=document.getElementById('fm').value.trim(),
+        nm=document.getElementById('fn').value.trim();
+    if(!m)return;
+    var sub='['+t+'] من موقع إينوما',
+        body=m+(nm?'\n\nالاسم: '+nm:'');
+    window.location.href='mailto:enuma.iq@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+  });
+})();
+</script>
+</body>
+</html>
